@@ -83,15 +83,24 @@ sub_agent = LlmAgent(
 
 ## Deployment
 
-See `deployment/run.py` for an example of initializing Vertex AI and running queries against the agent. You will need to set the following environment variables:
-- `GOOGLE_CLOUD_PROJECT`
-- `GOOGLE_CLOUD_LOCATION`
-- `AGENT_ENGINE_ID`
+1. **Configure Environment Variables:**
+   - Edit the `.env` file and replace the environment variables with your GCP project values:
+     - `GOOGLE_CLOUD_PROJECT`
+     - `GOOGLE_CLOUD_LOCATION`
+     - `GOOGLE_API_KEY`
+     - `STAGING_BUCKET`
+   - **Note:** `AGENT_ENGINE_ID` is set automatically when the agent is deployed; you do not need to set it manually.
 
-Example usage:
-```bash
-poetry run python deployment/run.py
-```
+2. **Deploy the Agent to GCP Agent Engine:**
+   ```bash
+   python deployment/deploy.py
+   ```
+
+3. **Test the Deployed Agent:**
+   - You can run a test to make sure the deployment works by calling the deployed agent and asking something:
+   ```bash
+   python deployment/run.py
+   ```
 
 ## Customization
 - **Add new tools:** Place Python functions in `base_agent/tools/` and add them to the agent's `tools` list.
